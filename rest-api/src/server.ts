@@ -1,5 +1,6 @@
 import * as express from 'express';
 import { root } from './routes/root';
+import { isInteger } from './utils';
 
 const app = express();
 
@@ -8,8 +9,17 @@ const setupExpress = () => {
 };
 
 const startServer = () => {
-  app.listen(9000, () => {
-    console.log('Server running at port 9000');
+  const portArg = process.argv[2];
+  let port;
+  if (isInteger(portArg)) {
+    port = parseInt(portArg);
+  }
+
+  if (!port) {
+    port = 9000;
+  }
+  app.listen(port, () => {
+    console.log(`Server running at port http://localhost:${port}`);
   });
 };
 
