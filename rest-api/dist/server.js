@@ -9,6 +9,7 @@ if (result.error) {
 var express = require("express");
 var root_1 = require("./routes/root");
 var utils_1 = require("./utils");
+var logger_1 = require("./logger");
 var app = express();
 var setupExpress = function () {
     app.route('/').get(root_1.root);
@@ -27,7 +28,7 @@ var startServer = function () {
         port = 9000;
     }
     app.listen(port, function () {
-        console.log("Server running at port http://localhost:".concat(port));
+        logger_1.logger.info("Server running at port http://localhost:".concat(port));
     });
 };
 setupExpress();

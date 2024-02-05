@@ -10,6 +10,7 @@ if (result.error) {
 import * as express from 'express';
 import { root } from './routes/root';
 import { isInteger } from './utils';
+import { logger } from './logger';
 
 const app = express();
 
@@ -35,7 +36,7 @@ const startServer = () => {
     port = 9000;
   }
   app.listen(port, () => {
-    console.log(`Server running at port http://localhost:${port}`);
+    logger.info(`Server running at port http://localhost:${port}`);
   });
 };
 
